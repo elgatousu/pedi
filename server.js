@@ -13,7 +13,7 @@ app.get("/pedido", (req, res) => {
 
     if (action === "add") {
         pedidos++;
-        return res.send(`📦 Pedido recibido | Total: ${pedidos}`);
+        return res.send(` 🏍️ Pedido entregado | Total: ${pedidos}`);
     }
 
     if (action === "sub") {
@@ -26,7 +26,7 @@ app.get("/pedido", (req, res) => {
         return res.send(`🔄 Contador reiniciado | Total: ${pedidos}`);
     }
 
-    res.send(`📦 Total pedidos: ${pedidos}`);
+    res.send(`🏍️ Total pedidos: ${pedidos}`);
 });
 
 const PORT = process.env.PORT || 3000;
