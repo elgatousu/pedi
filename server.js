@@ -3,26 +3,34 @@ const app = express();
 
 let pedidos = 0;
 
+app.get("/", (req, res) => {
+    res.send("Servidor de pedidos activo");
+});
+
 app.get("/pedido", (req, res) => {
 
     const action = req.query.action;
 
-    if(action === "add"){
+    if (action === "add") {
         pedidos++;
-        return res.send(`?? Pedido recibido | Total: ${pedidos}`);
+        return res.send(`📦 Pedido recibido | Total: ${pedidos}`);
     }
 
-    if(action === "sub"){
+    if (action === "sub") {
         pedidos = Math.max(0, pedidos - 1);
-        return res.send(`? Pedido cancelado | Total: ${pedidos}`);
+        return res.send(`❌ Pedido cancelado | Total: ${pedidos}`);
     }
 
-    if(action === "reset"){
+    if (action === "reset") {
         pedidos = 0;
-        return res.send(`?? Contador reiniciado`);
+        return res.send(`🔄 Contador reiniciado | Total: ${pedidos}`);
     }
 
-    res.send(`?? Total pedidos: ${pedidos}`);
+    res.send(`📦 Total pedidos: ${pedidos}`);
 });
 
-app.listen(3000, () => console.log("Servidor activo"));
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+    console.log(`Servidor activo en puerto ${PORT}`);
+});
